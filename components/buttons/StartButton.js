@@ -1,7 +1,9 @@
 import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { color } from "../style/Style";
 
 function StartButton() {
-  return <div>Je suis le bouton </div>;
+  return <Text>Je suis le bouton </Text>;
 }
 
 export default StartButton;
