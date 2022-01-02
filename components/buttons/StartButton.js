@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Button, Icon, LinearProgress, Overlay } from "react-native-elements";
 import { color } from "../style/Style";
 
 function StartButton() {
-  return <Text>Je suis le bouton </Text>;
+  const [icon, setIcon] = useState("play-circle");
+  return (
+    <View>
+      <Icon type="font-awesome" name={icon} size={150} color={color.red} />
+    </View>
+  );
 }
 
 export default StartButton;

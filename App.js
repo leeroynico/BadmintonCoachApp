@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   title: {
     flex: 0.1,
     fontFamily: "Kanit",
-    fontSize: 40,
+    fontSize: 50,
     color: color.light,
   },
 });
