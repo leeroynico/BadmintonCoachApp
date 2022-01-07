@@ -1,52 +1,50 @@
 import * as React from "react";
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Button, Icon, LinearProgress, Overlay } from "react-native-elements";
+import { View } from "react-native";
+import { Button, Icon } from "react-native-elements";
 import { color } from "../style/Style";
 import { Speak } from "../speech/Speech";
 import { useInterval } from "../UseInterval";
 
 function StartButton(props) {
-  const sayRandomNumber = (min, max) => {
-    const randomNumber = Math.floor(Math.random() * (max + 1 - min) + min);
-    Speak(randomNumber.toString());
-    props.setRandomNumber(randomNumber);
-  };
+  // const sayRandomNumber = (min, max) => {
+  //   const randomNumber = Math.floor(Math.random() * (max + 1 - min) + min);
+  //   Speak(randomNumber.toString());
+  //   props.setRandomNumber(randomNumber);
+  // };
 
-  const [start, setStart] = useState("");
-  const [seconds, setSeconds] = useState(20);
-  const [delai, setDelai] = useState(3000);
+  // const [start, setStart] = useState(props.start);
+  // const [delai, setDelai] = useState(3000);
 
-  //gestion du démarrage de l'entrainement à la seconde et remise à zéro variable
-  useInterval(() => {
-    if (start === "run") {
-      if (seconds > 0) {
-        setSeconds(seconds - 1);
-        props.setseconds(seconds - 1);
-      } else {
-        setIcon("play");
-        Speak("c'est fini");
-        setStart("");
-        setSeconds(20);
-      }
-    }
-  }, 1000);
+  //start train and reset it at the end
+  // useInterval(() => {
+  //   if (start === "run") {
+  //     if (props.seconds > 0) {
+  //       props.setseconds(props.seconds - 1);
+  //     } else {
+  //       setIcon("play");
+  //       Speak("c'est fini");
+  //       setStart("");
+  //       props.setseconds(20);
+  //     }
+  //   }
+  // }, 1000);
 
-  //gestion de l'énoncé des numéros au hazard
-  useInterval(() => {
-    if (start === "run") {
-      if (seconds > 0) {
-        sayRandomNumber(1, 6);
-      }
-    }
-  }, delai);
+  //speak random number
+  // useInterval(() => {
+  //   if (start === "run") {
+  //     if (props.seconds > 0) {
+  //       sayRandomNumber(1, 6);
+  //     }
+  //   }
+  // }, delai);
 
-  const [icon, setIcon] = useState("play-circle");
+  //const [icon, setIcon] = useState("play-circle");
   return (
     <View>
       <Icon
         type="font-awesome"
-        name={icon}
+        name={props.icon}
         size={150}
         color={color.red}
         onPress={() => {
@@ -58,7 +56,7 @@ function StartButton(props) {
             setIcon("play-circle");
             setStart("pause");
           } else if (start === "pause") {
-            setIcon("play-circle");
+            setIcon("pause-circle");
             setStart("run");
           }
         }}
