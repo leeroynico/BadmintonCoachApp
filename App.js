@@ -117,6 +117,8 @@ export default function App() {
             setSecondsMax={setSecondsMax}
             setSeconds={setSeconds}
             seconds={seconds}
+            setDelai={setDelai}
+            delai={delai}
           />
         </Overlay>
 
@@ -129,7 +131,7 @@ export default function App() {
           style={styles.progress}
         />
         <Text h4 style={styles.textChrono}>
-          {seconds} / {secondsMax} sec
+          {seconds} / {secondsMax} sec {delai}
         </Text>
         <Button
           disabled={start === "run" ? true : false}
