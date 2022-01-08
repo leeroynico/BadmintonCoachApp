@@ -4,11 +4,10 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { color } from "./components/style/Style";
 import { useFonts } from "expo-font";
-import { LinearProgress, Icon } from "react-native-elements";
+import { LinearProgress, Icon, Overlay, Button } from "react-native-elements";
 import { useInterval } from "./components/UseInterval";
 import { Speak } from "./components/speech/Speech";
-
-import ResetButton from "./components/buttons/ResetButton";
+import SettingsShadow from "./components/SettingsShadow";
 
 export default function App() {
   //importation des typos
@@ -17,7 +16,7 @@ export default function App() {
     Kanit: require("./assets/fonts/Kanit-Regular.ttf"),
   });
 
-  //make andn say random number
+  //make and say random number
   const sayRandomNumber = (min, max) => {
     const randomNumber = Math.floor(Math.random() * (max + 1 - min) + min);
     Speak(randomNumber.toString());
@@ -53,6 +52,12 @@ export default function App() {
       }
     }
   }, delai);
+
+  //gestion overlay
+  const [visible, setVisible] = useState(false);
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
 
   if (!loaded) {
     return <Text>loading</Text>;
@@ -106,6 +111,14 @@ export default function App() {
             </View>
           )}
         </View>
+        <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+          <SettingsShadow
+            setVisible={setVisible}
+            setSecondsMax={setSecondsMax}
+            setSeconds={setSeconds}
+            seconds={seconds}
+          />
+        </Overlay>
 
         <LinearProgress
           variant="determinate"
@@ -118,6 +131,16 @@ export default function App() {
         <Text h4 style={styles.textChrono}>
           {seconds} / {secondsMax} sec
         </Text>
+        <Button
+          disabled={start === "run" ? true : false}
+          title=" REGLAGES "
+          buttonStyle={{
+            height: 40,
+            backgroundColor: color.red,
+            marginTop: 20,
+          }}
+          onPress={toggleOverlay}
+        ></Button>
       </View>
     );
   }
