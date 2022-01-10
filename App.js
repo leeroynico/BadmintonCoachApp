@@ -131,7 +131,16 @@ export default function App() {
           style={styles.progress}
         />
         <Text h4 style={styles.textChrono}>
-          {seconds} / {secondsMax} sec {delai}
+          {seconds} / {secondsMax} sec {"\n"}
+        </Text>
+        <Text>{"\n"}</Text>
+        <Text h4 style={styles.textChrono}>
+          difficulté :
+          {delai === 3000
+            ? " normal"
+            : delai === 2000
+            ? " warrior"
+            : " tranquille"}
         </Text>
         <Button
           disabled={start === "run" ? true : false}
@@ -167,15 +176,16 @@ const styles = StyleSheet.create({
   },
   progress: {
     marginTop: 20,
-    height: 50,
+    height: 110,
     width: 300,
     borderRadius: 30,
   },
   textChrono: {
     color: "#f0e7d8",
-    marginTop: -41,
+    marginTop: -85,
     fontFamily: "Pangolin",
     marginBottom: 40,
+    fontSize: 20,
   },
   buttons: {
     display: "flex",
@@ -183,5 +193,10 @@ const styles = StyleSheet.create({
   },
   button: {
     marginHorizontal: 30,
+  },
+  info: {
+    color: color.light,
+    marginTop: 20,
+    fontSize: 25,
   },
 });

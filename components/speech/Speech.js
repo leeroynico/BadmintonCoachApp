@@ -1,8 +1,12 @@
 import * as Speech from "expo-speech";
+import { Platform } from "react-native";
 
 export const Speak = async (message) => {
   Speech.speak(message, {
-    voice: "fr-FR-language",
+    voice:
+      Platform.OS === "ios"
+        ? "com.apple.ttsbundle.Thomas-compact"
+        : "fr-FR-language",
     language: "fr-FR",
   });
 };
